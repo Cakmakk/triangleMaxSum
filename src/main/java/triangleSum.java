@@ -22,7 +22,7 @@ public class triangleSum {
        System.out.println("sum="+data[0][0]);
 
     }
-  //for (int=1;..) for this questions valid
+  //for (int=1;..) i=1 =>for this questions valid
     public static int isNotPrime(int num) {
         for (int i = 1; i < num; i++) {
             if (num % i == 0)
