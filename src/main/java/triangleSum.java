@@ -29,6 +29,7 @@ public class triangleSum {
             return self + Math.max(func(x + 1, y), func(x + 1, y + 1));
     }
     public static boolean isPrime(int num) {
+        if (num==1) return false; //if num=1 so for first question valid
         for (int i = 2; i < num; i++) {
             if (num % i == 0)
                 return false;
