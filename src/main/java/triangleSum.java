@@ -1,33 +1,45 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import static java.util.Arrays.stream;
 
-public class triangleSum {
+//the under construction
 
+public class triangleMaxSum {
+    private static int[][] arrlist;
+    private static ArrayList list = new ArrayList();
 
     public static void main(String[] args) throws Exception {
-        int[][] data = Files.lines(Paths.get("D:\\triangle.txt"))
+        int[][] data = Files.lines(Paths.get("D:\\trianglea.txt"))
                 .map(s -> stream(s.trim().split("\\s+"))
                         .mapToInt(Integer::parseInt)
                         .toArray())
                 .toArray(int[][]::new);
 
-        for (int r = data.length - 1; r > 0; r--) {
-            for (int c = 0; c < data[r].length - 1; c++) {
-                int choose = data[r][c];
-                data[r - 1][c] += isNotPrime(Math.max(data[r][c], data[r][c + 1]));
-            }
-        }
-       System.out.println("sum="+data[0][0]);
-
+        arrlist=data;
+        int sum=0;
+        func(0,0,sum);
+        int max= (int)Collections.max(list);
+        System.out.println("list"+list);
+        System.out.println("max-" + max);
     }
-  //for (int=1;..) i=1 =>for this questions valid
-    public static int isNotPrime(int num) {
-        for (int i = 1; i < num; i++) {
-            if (num % i == 0)
-                return num;
+
+    private static void func(int x, int y, int sum) {
+        if ((isPrime(arrlist[x + 1][y])) && (isPrime(arrlist[x + 1][y + 1])) || x == 13)
+        {
+            list.add(sum);
+            return;
         }
-        return 0;
+        func(x + 1, y, sum + arrlist[x + 1][y]);
+        func(x + 1, y + 1, sum + arrlist[x + 1][y + 1]);
+    }
+    public static boolean isPrime(int num) {
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0)
+                return false;
+        }
+        return true;
     }
 }
