@@ -27,6 +27,7 @@ public class triangleMaxSum {
     }
 
     private static void func(int x, int y, int sum) {
+        //stop status
         if ((isPrime(arrlist[x + 1][y])) && (isPrime(arrlist[x + 1][y + 1])) || x == 13)
         {
             list.add(sum);
